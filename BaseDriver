@@ -1,0 +1,65 @@
+public class BaseDriver {
+    public static WebDriver driver;
+
+    public  WebDriverWait wait;
+
+    @BeforeClass(groups = "SmokeTest")
+    public void baslangicIslemleri() {
+
+        System.out.println("Baslangic islemleri");
+        Logger logger = Logger.getLogger("");  // Sistem ait buyun loglari ureten objeye/servise e ulastim "" sayesinde
+        logger.setLevel(Level.SEVERE);               // Sadece errorlari gosterir SERVE sayesinde
+
+        System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); // Chrome Driver Output Proerty leri susturdu sadece Error verirse bir sey yazacak
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+
+        ChromeOptions opt = new ChromeOptions();      // web sayfasini kontrol eden gorevli
+
+        opt.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
+
+        driver = new ChromeDriver(opt);
+
+
+        //driver.manage().window().setPosition(new Point(-1650,130));
+
+        driver.manage().window().maximize();  // Ekranı max yapıyor.
+        driver.manage().deleteAllCookies();  // sitenin senin bilgisayarında yaptığı ayarlar siliniyor, sayfa başlangıç ayarlarına dönüyor
+
+        Duration dr=Duration.ofSeconds(30);
+        driver.manage().timeouts().pageLoadTimeout(dr); // Sadece tüm sayfanın kodlarının bilgisyarınıza inmesi süresiyle ilgili
+        //bu eklenmezse Selenium sayfa yüklenene kadar (sonsuza) bekler.: 30 sn süresince sayfanın yüklenmesini bekle yüklenmezse hata ver
+        // eğer 2 sn yüklerse 30 sn. beklemez.
+
+       // driver.manage().timeouts().implicitlyWait(dr); // Bütün weblementlerin element bazında, elemente özel işlem yapılmadan önce
+        // hazır hale gelmesi verilen mühlet yani süre. // eğer 2 sn yüklerse 30 sn. beklemez.
+
+        wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        loginTest();
+    }
+
+    void loginTest()
+    {
+        driver.get("https://opencart.abstracta.us/index.php?route=account/login");
+
+        System.out.println("login test");
+        WebElement inputEmail= driver.findElement(By.id("input-email"));
+        inputEmail.sendKeys("brokoli@gmail.com");
+
+        WebElement password= driver.findElement(By.id("input-password"));
+        password.sendKeys("123456");
+
+        WebElement loginBtn= driver.findElement(By.cssSelector("input[type='submit']"));
+        loginBtn.click();
+
+        Assert.assertEquals(driver.getTitle(),"My Account","Login başarısız");
+    }
+
+    @AfterClass(enabled = true, groups = "SmokeTest")
+    public void bitisIslemleri()
+    {
+        System.out.println("bitiş işlemleri");
+        Tools.Bekle(3);
+        //  driver.quit();
+    }
+}

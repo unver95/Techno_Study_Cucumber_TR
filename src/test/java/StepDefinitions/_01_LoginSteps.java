@@ -23,14 +23,25 @@ public class _01_LoginSteps {
 
     @When("Enter username and password and click Login button")
     public void enterUsernameAndPasswordAndClickLoginButton() {
+        DialogContent dc = new DialogContent();
+        /*
         WebDriverWait wait=new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(dc.username));
         dc.username.sendKeys("richfield.edu");
         dc.password.sendKeys("Richfield2020!");
         dc.logginButton.click();
+        */
+
+        dc.findAndSend("username", "richfield.edu");
+        dc.findAndSend("password", "Richfield2020!");
+
+        dc.findAndClick("logginButton");
+
     }
 
     @Then("User should login successfully")
     public void userShouldLoginSuccessfully() {
+        dc.findAndContainsText("dashboardElement", "Dashboard");
+        // TODO : accept kapatılacak
     }
 }
