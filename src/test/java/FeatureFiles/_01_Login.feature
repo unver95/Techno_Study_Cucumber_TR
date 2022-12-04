@@ -3,7 +3,7 @@
 #2- username ve password u gonderin ve Login buttonuna tiklantin
 #3- Login oldugunuzu dogrulayin
 
-Feature:
+Feature: Login Page
 
   Scenario: Login Functionality
 

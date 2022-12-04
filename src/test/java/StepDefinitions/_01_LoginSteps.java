@@ -1,11 +1,13 @@
 package StepDefinitions;
 
 import Pages.DialogContent;
+import Pages.Parent;
 import Utilities.GWD;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -40,8 +42,10 @@ public class _01_LoginSteps {
     }
 
     @Then("User should login successfully")
-    public void userShouldLoginSuccessfully() {
-        dc.findAndContainsText("dashboardElement", "Dashboard");
+    public void userShouldLoginSuccessfuly() {
+        dc.findAndContainsText("txtTechnoStudy","Techno Study");
         // TODO : accept kapatılacak
+        dc.findAndClick("acceptCookies");
+
     }
 }
