@@ -5,6 +5,7 @@
 
 Feature: Login Page
 
+@SmokeTest @Regression
   Scenario: Login Functionality
 
     Given Navigate to Campus

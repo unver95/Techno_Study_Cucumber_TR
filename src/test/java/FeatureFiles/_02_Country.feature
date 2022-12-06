@@ -6,6 +6,7 @@ Feature: Country Functionality
     Then User should login successfully
     And Navigate to country page
 
+    @SmokeTest
   Scenario: Create Country
 
     When create a country

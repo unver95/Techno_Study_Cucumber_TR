@@ -16,8 +16,8 @@ Feature: Exam Functionality
     When Enter username and password and click Login button
     Then User should login successfully
 
-  Scenario: Create and Delete Exam
-    And Click on the element on left nav
+  Scenario Outline: Create and Delete Exam
+    And Click on the element in left nav
       | entranceExamsOne |
       | setupTwo         |
       | entranceExamsTwo |
@@ -26,25 +26,32 @@ Feature: Exam Functionality
       | addButton |
 
     And User sending the keys in Dialog content
-      | nameInput | 69Brokoly69 |
+      | nameInput | <ExamName> |
 
     And Click on the element in the Form Content
-      | academicPeriod  |
-      | academicPeriod1 |
-      | gradeLevel      |
-      | gradeLevel2     |
+      | academicPeriod         |
+      | <academicPeriodOption> |
+      | gradeLevel             |
+      | <gradeLevelOption>     |
 
     And Click on the element in the Dialog
       | saveButton |
 
     Then Success message should be displayed
 
-    And Click on the element on left nav
+    And Click on the element in left nav
       | entranceExamsOne |
       | setupTwo         |
       | entranceExamsTwo |
 
     And User delete item from Dialog
-      | 69Brokoly69 |
+      | <ExamName> |
 
     Then Success message should be displayed
+
+    Examples:
+      | ExamName                                          | academicPeriodOption | gradeLevelOption |
+      | Math exam is1133                                  | academicPeriod1      | gradeLevel2      |
+      | IT exam is1313                                      | academicPeriod1      | gradeLevel3      |
+      | Oracle exam is1331                                  | academicPeriod1      | gradeLevel4      |
+      | senaexam1111111113311111111111111111111111111111111 | academicPeriod1      | gradeLevel5      |

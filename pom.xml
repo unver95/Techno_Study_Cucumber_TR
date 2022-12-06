@@ -70,6 +70,13 @@
             <version>5.2.3</version>
         </dependency>
 
+        <!-- https://www.programsbuzz.com/article/cucumber-testng-generate-extent-report-using-extent-adapter-grasshopper ==>  Rapor icin-->
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
 
     </dependencies>
 

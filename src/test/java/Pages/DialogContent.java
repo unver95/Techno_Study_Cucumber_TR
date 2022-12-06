@@ -122,10 +122,14 @@ public class DialogContent extends Parent {
     }
 
     public void FindAndDelete(String searchText) {
+
+
         findAndSend("searchInput", searchText); // aranacak kelimeyi kutucaga gonder
         findAndClick("searchButton");           // arama butonuna bas
 
+        waitUntilLoading();
         findAndContainsText("searchResultCell",searchText);  // arama sonuclarinin ilkinde arana kelime gozukune kadar bekle
+
 
         findAndClick("deleteButton");          // silme butona bas, cop kutusu
         findAndClick("deleteDialogBtn");       // dilogdaju silme butonuna bas

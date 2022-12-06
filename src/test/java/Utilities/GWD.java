@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,9 +16,13 @@ public class GWD {  //Genel Web Driver
 
     public static WebDriver getDriver() {
 
+/*        // extend report türkçe bilg çalışmaması sebebiyle kondu                =======> Turkce veya yabanci alfabeyi ingilizceye ceviriyor
+        Locale.setDefault(new Locale("EN"));
+        System.setProperty("user.language", "EN");*/
+
         if (driver == null) // eger driverin ici bir kez dolduysa asagadaki islemleri bir daha yapmasinina gerek kalmiyacak sadece driver return edecek
         {
-/*            WebDriverManager.chromedriver().setup();
+            WebDriverManager.chromedriver().setup();
 
             Logger.getLogger("").setLevel(Level.SEVERE);
             System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "Error");
@@ -27,11 +32,11 @@ public class GWD {  //Genel Web Driver
 
             opt.setBinary("C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe");
 
-            driver = new ChromeDriver(opt);*/
+            driver = new ChromeDriver(opt);
 
-        //firefxo
+/*        //firefxo
         WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        driver = new FirefoxDriver();*/
 
         }
         return driver;
@@ -46,7 +51,7 @@ public class GWD {  //Genel Web Driver
 
         if(driver != null) // dolu ise
         {
-            //driver.quit();
+            driver.quit();
             driver = null;
         }
     }
