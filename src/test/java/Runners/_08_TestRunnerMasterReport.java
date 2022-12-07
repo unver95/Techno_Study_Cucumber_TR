@@ -4,10 +4,11 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        tags = "@SmokeTest",
+        tags = "@Regression",
         features = {"src/test/java/FeatureFiles"},
         glue = {"StepDefinitions"},
-        plugin= {"html:target/site/cucumber-pretty.html"}
+        plugin= {"pretty","html:target/site/cucumber-pretty","json:target/cucumber/cucumber.json"}
 )
-public class _06_TestRunnerSmokeWithPlugin extends AbstractTestNGCucumberTests {
+public class _08_TestRunnerMasterReport extends AbstractTestNGCucumberTests {
+
 }

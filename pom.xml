@@ -70,14 +70,71 @@
             <version>5.2.3</version>
         </dependency>
 
-        <!-- https://www.programsbuzz.com/article/cucumber-testng-generate-extent-report-using-extent-adapter-grasshopper ==>  Rapor icin-->
+        <!-- https://www.programsbuzz.com/article/cucumber-testng-generate-extent-report-using-extent-adapter-grasshopper ==> Extent rapor icin-->
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber7-adapter</artifactId>
             <version>1.9.2</version>
         </dependency>
 
+        <!-- https://www.programsbuzz.com/article/masterthought-cucumber-reporting Master Reprot icin gerekli -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.7.4</version>
+        </dependency>
+
+        <!-- https://stackoverflow.com/questions/66801256/java-lang-illegalaccesserror-class-lombok-javac-apt-lombokprocessor-cannot-acce  LABOK VERSIYON-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+
 
     </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin><!--derlemek için-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+
+                    <includes>
+                        <include>**/_01_TestRunner.java</include>      <!-- Master Reprot da baglanti saglandi -->
+                    </includes>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.0.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Cucumber HTML Reports</projectName>
+                            <outputDirectory>${project.build.directory}/Report/cucumber-reports</outputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <jsonFiles>
+                                <param>**/cucumber*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
