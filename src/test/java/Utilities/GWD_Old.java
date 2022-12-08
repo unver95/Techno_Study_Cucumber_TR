@@ -23,7 +23,7 @@ public class GWD_Old {  //Genel Web Driver
             WebDriverManager.chromedriver().setup();
 
             Logger.getLogger("").setLevel(Level.SEVERE);
-            System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "Error");
+          //  System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "Error");
             System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true"); // Chrome Driver Output Proerty leri susturdu sadece Error verirse bir sey yazacak
 
             ChromeOptions opt = new ChromeOptions();      // web sayfasini kontrol eden gorevli

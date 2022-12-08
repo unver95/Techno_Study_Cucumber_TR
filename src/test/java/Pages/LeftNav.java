@@ -1,6 +1,7 @@
 package Pages;
 
 import Utilities.GWD;
+import Utilities.GWD_Old;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class LeftNav extends Parent {
 
     public LeftNav() {
-        PageFactory.initElements(GWD.getDriver(), this);
+        PageFactory.initElements(GWD_Old.getDriver(), this);
     }
 
     @FindBy(xpath = "(//span[text()='Setup'])[1]")

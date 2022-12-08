@@ -1,7 +1,7 @@
 package Utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.poi.ss.formula.atp.Switch;
+//import org.apache.poi.ss.formula.atp.Switch;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GWD {
-    // ! Paralel static local anlatmadna önce mikroişlemci gelişimini anlatalık, thread e gelelimki
+    // Paralel static local anlatmadna önce mikroişlemci gelişimini anlatalık, thread e gelelimki
     // aşağıdaki değişkenler için, thread.Sşeep den bahsedilebilir, pipeline, local ama static eğişken olmalı
     // pipeline-thread-tread.sleep selenium dedği explicit kullanın biz böyle yaptık.burada thread bazlı static değişken
     // yaplaıyızı o lokale özel
@@ -41,7 +41,7 @@ public class GWD {
         System.setProperty("user.language", "EN");
 
         Logger.getLogger("").setLevel(Level.SEVERE);
-        System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "Error");
+       // System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "Error");
 
 
         if (threadBrowserName.get() == null) // diğer testlerimizi direk çalıştırırken, XML den parametre gelmeyeceği için

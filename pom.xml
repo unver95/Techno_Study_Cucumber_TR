@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Techno_Study_Cucumber_TR</artifactId>
+    <artifactId>Cucumber</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -15,88 +15,76 @@
     </properties>
 
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.6.0</version>
+            <version>4.5.0</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.6.1</version>
-            <scope>test</scope>                  <!-- Hazirda vardi ama yoksa orasya da ekle -->
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>7.9.0</version>
-            <scope>test</scope>                   <!-- Kendimiz ekledik -->
+            <scope>test</scope>   <!--bunu sonradan ekledik-->
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.7</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>7.9.0</version>
-            <scope>test</scope>               <!-- Kendimiz ekledik -->
+            <scope>test</scope>   <!--bunu sonradan ekledik-->
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.3.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->  <!--Random generator (Belki screenShot da aliyor)-->
-        <dependency>
+            <!-- Excel işlemleri için aşağıdaki 2 depency ye kullanılıyor,  ilki random veri üretmek ve FileUtils için de kullanıldı-->
+            <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+            <!--            random sayı ve text üretmek için ekledik-->
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>5.2.3</version>
+            <version>4.1.0</version>
         </dependency>
 
-        <!-- https://www.programsbuzz.com/article/cucumber-testng-generate-extent-report-using-extent-adapter-grasshopper ==> Extent rapor icin-->
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber7-adapter</artifactId>
             <version>1.9.2</version>
         </dependency>
 
-        <!-- https://www.programsbuzz.com/article/masterthought-cucumber-reporting Master Reprot icin gerekli -->
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
             <version>5.7.4</version>
         </dependency>
 
-        <!-- https://stackoverflow.com/questions/66801256/java-lang-illegalaccesserror-class-lombok-javac-apt-lombokprocessor-cannot-acce  LABOK VERSIYON-->
         <dependency>
             <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
+            <artifactId>lombok-maven-plugin</artifactId>
+            <version>1.18.20.0</version>
+            <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
-
     <build>
         <plugins>
-
             <plugin><!--derlemek için-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -104,13 +92,11 @@
                 <configuration>
 
                     <includes>
-                        <include>**/_01_TestRunner.java</include>      <!-- Master Reprot da baglanti saglandi -->
+                        <include>**/_08_TestRunnerMasterReport.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
-
-
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
@@ -133,7 +119,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

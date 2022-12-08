@@ -1,6 +1,7 @@
 package Pages;
 
 import Utilities.GWD;
+import Utilities.GWD_Old;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -14,7 +15,7 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class Parent {
-    WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
+    WebDriverWait wait = new WebDriverWait(GWD_Old.getDriver(), Duration.ofSeconds(5));
     public void waitUntilVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
 
