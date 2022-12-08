@@ -41,7 +41,7 @@ public class _05_GetASpecificData {
         for (int i = 0; i < sheet.getPhysicalNumberOfRows(); i++) {
             if (sheet.getRow(i).getCell(0).toString().equalsIgnoreCase(arananKelime)) {
                 for (int j = 0; j < sheet.getRow(i).getPhysicalNumberOfCells(); j++) {
-                    returnWord += sheet.getRow(i).getCell(1 + j);
+                    returnWord += sheet.getRow(i).getCell(1 + j) + " ";
                 }
             }
         }
