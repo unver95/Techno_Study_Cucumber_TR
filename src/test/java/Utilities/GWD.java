@@ -31,6 +31,10 @@ public class GWD {
         GWD.threadBrowserName.set(browserName);
     }
 
+    public static  String getThreadBrowserName(){
+        return GWD.threadBrowserName.get();
+    }
+
     // threadDriver.get() -> bulunduğum thread deki drierı verecek
     // threadDriver.set(driver) -> bulunduğum thread e driver set ediliyor
 
@@ -92,5 +96,7 @@ public class GWD {
             WebDriver driver=threadDriver.get(); driver =null; // theradlocal deki boşaltma için önce al null  a eşitle ve tekrar ata.
             threadDriver.set(driver);
         }
+
+
     }
 }

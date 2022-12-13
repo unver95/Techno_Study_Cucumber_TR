@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import Utilities.ExcelUtility;
 import Utilities.GWD;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -16,17 +17,24 @@ import java.time.format.DateTimeFormatter;
 public class Hooks {
 
     @Before
-    public void before(){
+    public void before() {
         System.out.println("Seneryo basladi");
     }
 
     @After
-    public void after (Scenario senaryo)
-    {
+    public void after(Scenario senaryo) {
         System.out.println("Senaryo bitti");
 
-        if (senaryo.isFailed())
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("dd_MM_YYHHmmss");
+
+        // Senaryolarin sonuclarini bir excel formatindan yazdirmak istiyorum
+        ExcelUtility.writeToExcel("src/test/java/ApachePOI/Resource/ScenarioStatus.xlsx",
+                senaryo, GWD.getThreadBrowserName(), time.format(tf));
+
+        if (senaryo.isFailed()) // Senarya bitiiginde
         {
+//          Extend report icin diger durumlarda kaldiralim
             final byte[] byteHali = ((TakesScreenshot) GWD.getDriver()).getScreenshotAs(OutputType.BYTES);
             senaryo.attach(byteHali, "image/png", "screenshot name");
 
