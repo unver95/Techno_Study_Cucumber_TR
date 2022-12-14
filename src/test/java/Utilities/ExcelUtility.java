@@ -14,7 +14,6 @@ public class ExcelUtility {
     // getListData("src/test/java/ApachePOI/resources/ApacheExcel2.xlsx","testCitizen", 2); 0-2
 
 
-
     public static ArrayList<ArrayList<String>> getListData(String path, String sheetName, int columnCount) {
 
         ArrayList<ArrayList<String>> excelLists = new ArrayList<>();
@@ -28,9 +27,9 @@ public class ExcelUtility {
             throw new RuntimeException(e);
         }
 
-        for (int i =0; i < sheet.getPhysicalNumberOfRows(); i++){
-            ArrayList<String>rowData = new ArrayList<>();
-            for (int j = 0; j < columnCount; j++){
+        for (int i = 0; i < sheet.getPhysicalNumberOfRows(); i++) {
+            ArrayList<String> rowData = new ArrayList<>();
+            for (int j = 0; j < columnCount; j++) {
                 Cell cell = sheet.getRow(i).getCell(j);
                 rowData.add(cell.toString());
             }
@@ -39,11 +38,11 @@ public class ExcelUtility {
         return excelLists;
     }
 
-    public static void writeToExcel(String path, Scenario senaryo, String browserName, String time){
+    public static void writeToExcel(String path, Scenario senaryo, String browserName, String time) {
 
         File f = new File(path);
 
-        if (!f.exists()){ // yok ise
+        if (!f.exists()) { // yok ise
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("CampusTest");
 
@@ -55,7 +54,7 @@ public class ExcelUtility {
             yeniHucre = yeniSatir.createCell(1);
             yeniHucre.setCellValue(senaryo.getStatus().toString());
 
-            yeniHucre=yeniSatir.createCell(2);
+            yeniHucre = yeniSatir.createCell(2);
             yeniHucre.setCellValue(browserName);
 
             yeniHucre = yeniSatir.createCell(3);
@@ -68,13 +67,46 @@ public class ExcelUtility {
                 workbook.write(outputStream);
                 workbook.close();
                 outputStream.close();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
-        }else { //var ise
+        } else { //var ise
+            Sheet sheet = null;
+            Workbook workbook = null;
+            FileInputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream(path);
+                workbook = WorkbookFactory.create(inputStream);
+                sheet = workbook.getSheetAt(0);
+            } catch (IOException e) {
+                System.out.println("e.getMessage() = " + e.getMessage());
+            }
 
+            int enSonSatirSayisi = sheet.getPhysicalNumberOfRows();  // 5 satir: 0,1,2,3,4
+            Row yeniSatir = sheet.createRow(enSonSatirSayisi); // 5 indexli satir boylece yeni satir
+
+            Cell yeniHucre = yeniSatir.createCell(0);
+            yeniHucre.setCellValue(senaryo.getName());
+
+            yeniHucre = yeniSatir.createCell(1);
+            yeniHucre.setCellValue(senaryo.getStatus().toString());
+
+            yeniHucre = yeniSatir.createCell(2);
+            yeniHucre.setCellValue(browserName);
+
+            yeniHucre = yeniSatir.createCell(3);
+            yeniHucre.setCellValue(time);
+
+            try {
+                inputStream.close();
+                FileOutputStream outputStream = new FileOutputStream(path);
+                workbook.write(outputStream);
+                workbook.close();
+                outputStream.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }
@@ -82,7 +114,7 @@ public class ExcelUtility {
     public static void main(String[] args) {
         ArrayList<ArrayList<String>> excelList = new ArrayList<>();
 
-        excelList =  getListData("src/test/java/ApachePOI/Resource/ApacheExcel2.xlsx", "testCitizen", 2);
+        excelList = getListData("src/test/java/ApachePOI/Resource/ApacheExcel2.xlsx", "testCitizen", 2);
         System.out.println(excelList);
     }
 }
